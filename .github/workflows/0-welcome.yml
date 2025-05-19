@@ -1,4 +1,4 @@
-name: Step 0, Welcome
+name: Post welcome comment
 
 # This step triggers after the learner creates a new repository from the template.
 # This workflow updates from step 0 to step 1.
@@ -7,6 +7,8 @@ name: Step 0, Welcome
 # Reference: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
   workflow_dispatch:
+  pull_request:
+    types: [opened]
   push:
     branches:
       - main
@@ -16,6 +18,7 @@ permissions:
   # Need `contents: read` to checkout the repository.
   # Need `contents: write` to update the step metadata.
   contents: write
+  pull-requests: write
 
 jobs:
   # Get the current step to only run the main job when the learner is on the same step.
